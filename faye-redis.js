@@ -13,11 +13,11 @@ var Engine = function(server, options) {
   this._ns  = this._options.namespace || '';
 
   if (socket) {
-    this._redis = redis.createClient(socket, {no_ready_check: true});
-    this._subscriber = redis.createClient(socket, {no_ready_check: true});
+    this._redis = redis.createClient(socket, {legacyMode: true, no_ready_check: true});
+    this._subscriber = redis.createClient(socket, {legacyMode: true, no_ready_check: true});
   } else {
-    this._redis = redis.createClient(port, host, {no_ready_check: true});
-    this._subscriber = redis.createClient(port, host, {no_ready_check: true});
+    this._redis = redis.createClient(port, host, {legacyMode: true, no_ready_check: true});
+    this._subscriber = redis.createClient(port, host, {legacyMode: true, no_ready_check: true});
   }
 
   if (auth) {
