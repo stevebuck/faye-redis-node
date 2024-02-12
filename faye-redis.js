@@ -14,10 +14,14 @@ var Engine = function(server, options) {
 
   if (socket) {
     this._redis = redis.createClient(socket, {legacyMode: true, no_ready_check: true});
+    this._readis.connect();
     this._subscriber = redis.createClient(socket, {legacyMode: true, no_ready_check: true});
+    this._subscriber.connect();
   } else {
     this._redis = redis.createClient(port, host, {legacyMode: true, no_ready_check: true});
+    this._redis.connect();
     this._subscriber = redis.createClient(port, host, {legacyMode: true, no_ready_check: true});
+    this._subscriber.connect();
   }
 
   if (auth) {
